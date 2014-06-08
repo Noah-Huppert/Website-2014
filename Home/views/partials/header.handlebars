@@ -1,0 +1,44 @@
+<head>
+
+	<!-- Fonts Collection: http://abduzeedo.com/tags/fonts -->
+	<!-- Typomoderno Font: http://www.dafont.com/typomoderno.font -->
+	<link href="{{ site.url }}/fonts/Typomoderno/Typomoderno.css" rel="stylesheet" type="text/css">
+	<!-- Campton Font: http://fontfabric.com/campton-free-font/ -->
+	<link href="{{ site.url }}/fonts/Campton/Campton.css" rel="stylesheet" type="text/css">
+	<!-- Anke Font: http://www.ankesans.com/ -->
+	<link href="{{ site.url }}/fonts/Anke/Anke.css" rel="stylesheet" type="text/css">
+	<!-- Densia Sans Font: http://www.harbortype.com/densia-sans -->
+	<link href="{{ site.url }}/fonts/DensiaSans/DensiaSans.css" rel="stylesheet" type="text/css">
+	<!-- Custom CSS -->
+	<link href="{{ site.url }}/render/css/styles.css" rel="stylesheet" type="text/css">
+
+	<!-- Jquery -->
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<!-- Kinetic JS V5.1.0 -->
+	<script src="{{ site.url }}/js/kinetic.js"></script>
+	<!-- Custom JS -->
+	<script src="{{ site.url }}/render/js/javascript.js"></script>
+
+</head>
+
+<body>
+	<div id="header" class="above">
+		<div id="info">
+			<div id="siteInfo">
+				<div id="siteName">{{ site.name }}</div>
+				<div id="siteTagline">{{ site.tagline }}</div>
+			</div>
+
+			<div id="pageInfo">
+				<span class="branchInfoText">Branch: </span> <a href="{{ site.url }}/{{ branch.slug }}">{{ branch.name }}</a> <span class="branchInfoText"> / </span> <a href="{{ site.url }}/{{ branch.slug }}/{{ page.slug }}">{{ page.title }}</a>
+			</div>
+		</div>
+
+		<div id="branchMenu">
+			{{#each branch.menu }}
+				<a href="{{ ../site.url }}/{{ ../branch.slug }}/{{ link }}">{{ text }}</a>
+			{{/each}}
+		</div>
+
+	</div>

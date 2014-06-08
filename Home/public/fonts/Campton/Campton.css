@@ -1,0 +1,11 @@
+@font-face{
+	font-family: 'Campton';
+	font-weight: normal;
+	src: url('Campton-Light.otf');
+}
+
+@font-face{
+	font-family: 'Campton';
+	font-weight: bold;
+	src: url('Campton-Bold.otf');
+}
