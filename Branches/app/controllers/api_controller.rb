@@ -10,7 +10,7 @@ class ApiController < ApplicationController
     result = {}
 
     if Token.validate(request, errors)
-      result["uuid"] = Token.create
+      result["valid"] = "true"
     end
 
     give(result, errors)
@@ -48,6 +48,10 @@ class ApiController < ApplicationController
 
   def connectToGoogleCallback
     render plain: "Connect to google callback"
+  end
+
+  def apiActionNotFound
+    give({}, "apiActionNotFound");
   end
 
 end

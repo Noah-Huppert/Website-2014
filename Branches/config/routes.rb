@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/api/users/login/connect', to: 'api#connectToGoogle'
   get '/api/users/login/disconnect', to: 'api#disconnectFromGoogle'
   get '/api/users/login/oath2callback', to: 'api#connectToGoogleCallback'
+  
 
   #namespace :api do
   #  resources :users, only: [:index, :create]

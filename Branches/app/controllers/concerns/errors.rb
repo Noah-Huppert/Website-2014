@@ -27,6 +27,8 @@ module Errors
     case errorId
     when "badRequestToken"
       returnError = createError(errorId, "The request token provided is not valid")
+    when "apiActionNotFound"
+      returnError = createError(errorId, "The API action requested does not exist")
     end
 
     return returnError
