@@ -52,3 +52,13 @@ gem "recaptcha", :require => "recaptcha/rails"
 #Google Plus API
 #Github: https://github.com/googleplus/gplus-quickstart-ruby
 gem 'google-api-client', '>= 0.6.2', :require => 'google/api_client'
+
+
+#Google Plus API OAth2 Client
+#Github: https://github.com/google/signet
+gem 'signet', '~> 0.5.1'
+
+
+#Rest Client
+#Github: https://github.com/rest-client/rest-client
+gem 'rest-client'

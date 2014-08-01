@@ -12,11 +12,14 @@ Rails.application.routes.draw do
   patch '/api/users/u/:uid/:aid', to: 'api#updateAttribute'
   put '/api/users/u/:uid/:aid', to: 'api#updateAttribute'
 
+  get '/api/tokens/t/:token', to: 'api#validateToken'
+  get '/api/tokens/n', to: 'api#createToken'
+  delete '/api/tokens/t/:token', to: 'api#deleteToken'
 
   get '/api/users/login/connect', to: 'api#connectToGoogle'
   get '/api/users/login/disconnect', to: 'api#disconnectFromGoogle'
-  get '/api/users/login/oath2callback', to: 'api#connectToGoogleCallback'
-  
+  get '/api/users/login/oauth2callback', to: 'api#connectToGoogleCallback'
+
 
   #namespace :api do
   #  resources :users, only: [:index, :create]

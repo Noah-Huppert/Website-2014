@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723231822) do
+ActiveRecord::Schema.define(version: 20140731224603) do
+
+  create_table "query_stages", force: true do |t|
+    t.integer  "queries_id"
+    t.datetime "start"
+    t.datetime "end"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "query_times", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "request_tokens", force: true do |t|
     t.string   "token"

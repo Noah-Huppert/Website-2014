@@ -4,22 +4,37 @@ module Token
   #def self.valid(givenRequestToken)
   #end
 
-  def self.create(permissions)
+  def self.create(permissions = "")
     #token => SecureRandom.uuid
     #secret => SecureRandom.hex(32)
     #permissions => ""
     # Permissions:
     # => admin
 
+    requestToken = self.genToken(permissions)
+
+    if self.isTokenUnique(requestToken[:token])
+      RequestToken.create(token: requestToken[:token], secret: requestToken[:secret], permissions: requestToken[:permissions])
+    else
+      self.create(permissions)
+    end
+
+    return requestToken
+  end
+
+  def self.genToken(permissions)
     requestToken = {
       :token => SecureRandom.uuid,
       :secret => SecureRandom.hex(32),
       :permissions => permissions
     }
 
-    RequestToken.create(token: requestToken[:token], secret: requestToken[:secret], permissions: requestToken[:permissions])
-
     return requestToken
+  end#genToken
+
+  def self.isTokenUnique(token)
+    requestToken = RequestToken.find_by token: token
+    return requestToken.nil?
   end
 
   def self.validate(request, errors, requiredPermissions = "")
@@ -54,6 +69,7 @@ module Token
       #Invalid
       errors.push("badRequestToken")
     end
+
 
     return isValid
   end#validate

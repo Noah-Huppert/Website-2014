@@ -4,6 +4,7 @@ module Giver
   include Errors
 
   def give(payload, errors)
+
     if !defined?(payload) || payload == nil
       payload = {}
     end
@@ -20,6 +21,7 @@ module Giver
     sendObject["errors"] = Errors.errors(errors)
 
     render json: JSON.pretty_generate(sendObject)
+
   end#give
 
 end#Sender

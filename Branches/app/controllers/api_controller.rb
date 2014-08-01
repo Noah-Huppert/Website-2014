@@ -2,6 +2,7 @@ class ApiController < ApplicationController
 
   include Token
   include Giver
+  include Auth
 
   require 'google/api_client'
 
@@ -10,7 +11,7 @@ class ApiController < ApplicationController
     result = {}
 
     if Token.validate(request, errors)
-      result["valid"] = "true"
+      result["uuids"] = "true"
     end
 
     give(result, errors)
@@ -38,8 +39,35 @@ class ApiController < ApplicationController
   end
 
 
+  def validateToken
+
+  end
+
+  def createToken
+    result = {}
+    errors = []
+    #if Rails.env.development?
+      permissions = request.headers["requestTokenPermissions"]
+      result["requestToken"] = Token.create(permissions)
+    #end
+
+    give(result, errors);
+  end
+
+  def deleteToken
+
+  end
+
+
   def connectToGoogle
-    render plain: "Connect to google"
+    errors = []
+    result = {}
+
+    if Token.validate(request, errors)
+      result["leg1"] = Auth.leg1
+    end
+
+    redirect_to result["leg1"]
   end
 
   def disconnectFromGoogle
@@ -47,7 +75,14 @@ class ApiController < ApplicationController
   end
 
   def connectToGoogleCallback
-    render plain: "Connect to google callback"
+    errors = []
+    result = {}
+
+    if Token.validate(request, errors)
+      result["leg2"] = Auth.leg2(request)
+    end
+
+    give(result, errors)
   end
 
   def apiActionNotFound
