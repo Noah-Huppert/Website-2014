@@ -1,73 +1,27 @@
 module Auth
   extend ActiveSupport::Concern
 
-  #require "signet/oauth_2/client"
-  #require "google/api_client"
-  #require "google/api_client/auth/installed_app"
   require "rest_client"
 
-  def self.leg1
-=begin
-    gapi_client = Google::APIClient.new(
-      :application_name => "Branches",
-      :application_version => "0.0.1")
+  include UrlHelper
+  include USession
 
-    gapi_plus = gapi_client.discovered_api("plus")
-
-    gapi_flow = Google::APIClient::InstalledAppFlow.new(
-      :client_id => Rails.application.secrets.gapi_client_id,
-      :client_secret => Rails.application.secrets.gapi_client_secret,
-      :scope => ["https://www.googleapis.com/auth/plus.me"],
-      :redirect_uri => Rails.application.secrets.gapi_redirect_uri)
-
-    gapi_client.authorization = gapi_flow.authorize
-=end
-=begin
-    oathClient = Signet::OAuth2::Client.new(
-      :authorization_uri => "https://accounts.google.com/o/oauth2/auth",
-      :token_credential_uri => "https://accounts.google.com/o/oauth2/token",
-      :client_id => Rails.application.secrets.gapi_client_id,
-      :client_secret => Rails.application.secrets.gapi_client_secret,
-      :redirect_uri => Rails.application.secrets.gapi_redirect_uri,
-      :scope => "https://www.googleapis.com/auth/plus.login")
-
-    gapi_client = Google::APIClient.new(
-      :application_name => "Branches",
-      :application_version => "0.0.1")
-
-    oathClient.code = request.body.read
-    oathClient.fetch_access_token!
-    gapi_client.authorization = oathClient
-
-    return gapi_client.authorization.id_token
-=end
+  def self.getAuthCode
 
     data = {
       :client_id => Rails.application.secrets.gapi_client_id,
       :redirect_uri => Rails.application.secrets.gapi_redirect_uri,
       :scope => "https://www.googleapis.com/auth/plus.login",
+      :access_type => "offline",
       :response_type => "code"
     }
 
-    url = "https://accounts.google.com/o/oauth2/auth?"
+    url = "https://accounts.google.com/o/oauth2/auth"
 
-    i = 0
-    data.each do | key, value |
-      beginer = "&"
+    return UrlHelper.format(url, data)
+  end#getAuthCode
 
-      if i == 0
-        beginer = ""
-      end
-
-      url = url + beginer + key.to_s + "=" + value.to_s
-      i = i + 1
-    end
-
-    return url;
-
-  end#leg1
-
-  def self.leg2(request)
+  def self.getToken(request, toReturn, errors)
     code = request.params[:code]
 
     data = {
@@ -80,11 +34,134 @@ module Auth
 
     url = "https://accounts.google.com/o/oauth2/token"
 
-    response = RestClient.post url, data
+    RestClient.post(url, data){| response, request, result, &block |
+        if response.code == 200
+          responseData = JSON.parse response.body
+
+          retrievedToken = {
+            :access_token => responseData["access_token"],
+            :refresh_token => responseData["refresh_token"],
+            :token_type => responseData["token_type"],
+            :expires_in => responseData["expires_in"].to_i,
+            :expires_on => DateTime.now + responseData["expires_in"].to_i.seconds,
+            :gid => responseData["id_token"]
+          }
+
+          #Check to make sure all mandatory parameters exist
+          if retrievedToken[:access_token].nil? ||
+             retrievedToken[:token_type].nil? ||
+             retrievedToken[:expires_in].nil? ||
+             retrievedToken[:expires_on].nil? ||
+             retrievedToken[:gid].nil?
+
+             errors.push("badGAPIRequest")
+             break
+          end#Check for mandatory params
 
 
-    return response
-  end#leg2
+          @user = User.find_by(gid: retrievedToken[:gid])
 
+          if @user.nil?
+            #Create user
+            @user = User.create(gid: retrievedToken[:gid], permissions: "")
+          end#user.nil?
+
+          #Now that their is gaurenteed to be a user, check for a gapiToken
+          @gapiToken = @user.gapi_token
+
+          if @gapiToken.nil?
+            #Create gapiToken
+            if retrievedToken[:refresh_token].nil?
+              #If no refresh token exit with error
+              errors.push("noRefreshTokenOnGAPITokenCreate")
+              break
+            end#refresh_token.nil?
+
+            @gapiToken = @user.create_gapi_token(
+              access_token: retrievedToken[:access_token],
+              token_type: retrievedToken[:token_type],
+              expires_on: retrievedToken[:expires_on],
+              refresh_token: retrievedToken[:refresh_token])
+        else
+          #Update refresh
+          @gapiToken.update(
+            access_token: retrievedToken[:access_token],
+            token_type: retrievedToken[:token_type],
+            expires_on: retrievedToken[:expires_on])
+        end#gapiToken.nil?
+
+
+        #Manage Sessions
+        @userSessions = @user.user_sessions.all
+        @validUserSession = nil
+
+        #Delete old sessions
+        @userSessions.each do | session |
+          if DateTime.now > session.expires_on
+            #Session has expired, delete
+            session.destroy
+          else
+            @validUserSession = session
+          end#Expire check
+        end#userSessions.each
+
+        if @validUserSession.nil?
+          #No valid sessions, create one
+          @validUserSession = USession.create(@user)
+        end#validUserSession.nil?
+
+
+        #Return data
+        toReturn["getToken"] = {
+          :retrievedToken => retrievedToken,
+          :gapiToken => @gapiToken.inspect,
+          :userSession => @validUserSession.inspect
+        }
+
+      else#else code
+        errors.push("badGAPIRequest")
+        toReturn["badResponse"] = JSON.parse response.body
+      end#if code 200
+
+    }#post
+  end#getToken
+
+  def self.revokeToken(request, toReturn, errors)
+    gid = request.params["gid"]
+
+    if gid.nil?
+      errors.push("badRequest")
+      return
+    end
+
+    @user = User.find_by(gid: gid)
+
+    if @user.nil?
+      errors.push("noSuchUser")
+    end
+
+    @gapiToken = @user.gapi_token
+
+    if @gapiToken.nil?
+      errors.push("userLacksGapiToken")
+      return
+    end
+
+    data = {
+      :token => @gapiToken.refresh_token
+    }
+
+    url = "https://accounts.google.com/o/oauth2/revoke"
+    finalUrl = UrlHelper.format(url, data)
+
+    RestClient.get(finalUrl){| response, request, result, &block |
+      if response.code == 200
+          toReturn["success"] = "true"
+      else
+        errors.push("badGAPIRequest")
+        toReturn["success"] = "false"
+      end
+    }#get
+  end#revokeToken
 
 end#Auth

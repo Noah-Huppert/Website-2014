@@ -63,24 +63,32 @@ class ApiController < ApplicationController
     errors = []
     result = {}
 
-    if Token.validate(request, errors)
-      result["leg1"] = Auth.leg1
-    end
-
-    redirect_to result["leg1"]
+    #if Token.validate(request, errors)
+      result["redirectUrl"] = Auth.getAuthCode
+      redirect_to result["redirectUrl"]
+    #else
+      #give(result, errors)
+    #end
   end
 
   def disconnectFromGoogle
-    render plain: "Disconnect from google"
+    errors = []
+    result = {}
+
+    #if Token.validate(request, errors)
+      Auth.revokeToken(request, result, errors)
+    #end
+
+    give(result, errors)
   end
 
   def connectToGoogleCallback
     errors = []
     result = {}
 
-    if Token.validate(request, errors)
-      result["leg2"] = Auth.leg2(request)
-    end
+    #if Token.validate(request, errors)
+      Auth.getToken(request, result, errors)
+    #end
 
     give(result, errors)
   end

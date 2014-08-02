@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731224603) do
+ActiveRecord::Schema.define(version: 20140801191916) do
+
+  create_table "gapi_tokens", force: true do |t|
+    t.integer  "user_id"
+    t.string   "access_token"
+    t.string   "token_type"
+    t.datetime "expires_on"
+    t.string   "refresh_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "query_stages", force: true do |t|
-    t.integer  "queries_id"
+    t.integer  "queryTime_id"
     t.datetime "start"
     t.datetime "end"
     t.string   "name"
@@ -31,6 +41,22 @@ ActiveRecord::Schema.define(version: 20140731224603) do
   create_table "request_tokens", force: true do |t|
     t.string   "token"
     t.string   "secret"
+    t.string   "permissions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_sessions", force: true do |t|
+    t.integer  "user_id"
+    t.string   "sid"
+    t.string   "secret"
+    t.datetime "expires_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "gid"
     t.string   "permissions"
     t.datetime "created_at"
     t.datetime "updated_at"
