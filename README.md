@@ -1,19 +1,16 @@
 Website-2014
 ============
 
-All the code for my website, 2014 addition
-  
-  
-This Repository contains all the code for my website. Currently the main project is in /Branches
-  
-  
-Branches
-========
-Branches is a Ruby On Rails based CMS. Branches is currently in very heavy developement.
+*All the code for my website, 2014 addition*  
+*This Repository contains all the code for my website.*
 
-**Roadmap**  
-- Use Google Plus Authetication  
-- Finish Users API  
-- Finish Posts API  
-- Create Admin dashboard  
-- Create website frontend   
+<br>
+Branches
+===
+*A custom CMS in very heavy development.*
+
+<br>
+Site
+===
+The content that will be rendered by `branches`.  
+<a href="./Site/Guidelines.md" style="font-weight: bold; font-size: 24px;">Site Guidelines</a>
