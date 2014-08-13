@@ -13,7 +13,7 @@ Table Of Contents
 [Quotes](#quotes)  
 [Dependencies](#dependencies)  
 [Sass](#using-sass-and-friends)  
-[RequireJS](#using-requireJS)
+[RequireJS](#using-requirejs)
 
 <br>
 Features
