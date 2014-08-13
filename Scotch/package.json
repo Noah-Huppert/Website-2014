@@ -1,0 +1,30 @@
+{
+  "name": "Scotch",
+  "version": "0.0.1",
+  "description": "Scotch is a NodeJS website framework created by Noah Huppert for his personal site.",
+  "main": "src/server/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Noah-Huppert/Website-2014.git"
+  },
+  "keywords": [
+    "nodejs",
+    "scotch",
+    "framework",
+    "web",
+    "mvc"
+  ],
+  "author": "Noah Huppert",
+  "license": "GNU GPL v3.0 License",
+  "bugs": {
+    "url": "https://github.com/Noah-Huppert/Website-2014/issues"
+  },
+  "homepage": "https://github.com/Noah-Huppert/Website-2014",
+  "dependencies": {
+    "express": "^4.8.3",
+    "doT": "~1.0.1"
+  }
+}
