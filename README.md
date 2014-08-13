@@ -7,13 +7,13 @@ Scotch
 <br>
 Table Of Contents
 ===
-[Features](#Features)  
-[Directory Structure](#Directory_Structure)  
-[Style Sheets](#Style_Sheets)  
-[Quotes](#Quotes)  
-[Dependencies](#Dependencies)  
-[Sass](#Using_Sass_and_friends)  
-[RequireJS](#Using_RequireJS)
+[Features](#features)  
+[Directory Structure](#directory_structure)  
+[Style Sheets](#style_sheets)  
+[Quotes](#quotes)  
+[Dependencies](#dependencies)  
+[Sass](#using_sass_and_friends)  
+[RequireJS](#using_requireJS)
 
 <br>
 Features
