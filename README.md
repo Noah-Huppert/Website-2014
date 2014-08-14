@@ -34,7 +34,7 @@ Installation
 - Navigate to the main Scotch directory
  - `cd Scotch`
 - Use the **Scotch Command Line Interface** to install Scotch
- - `grunt scotch --install`
+ - `grunt scotch --install=true`
 
 
 <br>
