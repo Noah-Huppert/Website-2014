@@ -7,13 +7,35 @@ Scotch
 <br>
 Table Of Contents
 ===
+[Installation](#installation)  
 [Features](#features)  
+[Scotch Namespaces](#scotch-namespaces)  
+[Scotch Command Line Interface](#scotch-command-line-interface)  
 [Directory Structure](#directory-structure)  
 [Style Sheets](#style-sheets)  
 [Quotes](#quotes)  
 [Dependencies](#dependencies)  
 [Sass](#using-sass-and-friends)  
 [RequireJS](#using-requirejs)
+
+<br>
+Installation
+===
+*To install Scotch you must have GruntJS installed, if GruntJS is not already installed go to the [GruntJS website](http://gruntjs.com/) and follow the install instructions.*  
+
+*To install Scotch your must have Git installed*  
+
+
+*To install Scotch use the **Scotch Command Line Interface** *  
+
+**Installation**  
+- Clone Scotch to your workspace
+ - `git clone https://github.com/Noah-Huppert/Website-2014.git`
+- Navigate to the main Scotch directory
+ - `cd Scotch`
+- Use the **Scotch Command Line Interface** to install Scotch
+ - `grunt scotch --install`
+
 
 <br>
 Features
@@ -27,6 +49,36 @@ Scotch uses [Handlebars Templating](http://handlebarsjs.com/) which is a smarter
 #####SCSS flavored Sass
 Scotch uses SCSS flavored [Sass](http://sass-lang.com/)
 
+#####Scotch Command Line Interface
+Scotch comes with a Command Line Interface. This makes managing the installating of Scotch and updates as simple as running a command. The Scotch Command Line Interface also provides several other tools.
+
+<br>
+Scotch Namespaces
+===
+*Schotch uses namespaces in its code to keep organized, below are a list of these namespaces and a short description*  
+- *scotch.cli* - Scotch Command Line Tools
+
+<br>
+Scotch Command Line Interface
+===
+*The **Scotch Command Line Interface** makes managing Scotch installation and updating as simple as running a command*
+
+**Commands:**  
+> *grunt scotch [**flags**]* => The base command for Scotch-CLI
+
+**Flag Usage:**  
+*Scotch Command Line Interface uses flags to determine what action to tag*  
+*To use flags simply follow this format:*  
+
+`grunt scotch --{Flag Name}={true/false}`
+
+{Flag Name} - Should be replaced with the flag names, these are listed below
+{true/false} - Either write `true` or `false`, `true` would indicate that you want the flag to be active, `false` would indicate that you **do not** want the flag to be active
+
+
+**Flags:**  
+> *--install* => Installs Scotch and its dependencies  
+> *--update* => Updates Scotch and its dependencies
 
 <br>
 Directory Structure
@@ -73,7 +125,7 @@ Dependencies
 > *bower install* => Installs bower packages  
 > *bower update* => Updates bower packages
 
-*To access dependencies look in `./lib/bower/{Package Name}`(This folder is set in `./.bowerrc`)*  
+*To access dependencies look in `./bower/{Package Name}`(This folder is set in `./.bowerrc`)*  
 **Current dependencies:**  
 - [Bourbon](http://bourbon.io/)
 - [Neat](http://neat.bourbon.io/)
@@ -96,6 +148,7 @@ Dependencies
 *To access NPM dependencies look in `./lib/node_modules/{Package Name}`*  
 - [ExpressJS](http://expressjs.com/)
 - [doT](http://olado.github.io/doT/)
+- [GruntJS](http://gruntjs.com/)
 
 <br>
 Using *Sass and friends*
