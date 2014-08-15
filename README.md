@@ -1,6 +1,5 @@
 Scotch
 ===
-*^ Replace with logo ^*  
 *Scotch is a [NodeJS](http://nodejs.org/) website framework created by [Noah Huppert](http://NoahHuppert.com) for his personal site. Scotch can be used under the terms of the [GNU GPL v3.0 License](/LICENSE)*  
 *Scotch is designed to be used with a blog and a portfolio as well as some static pages*  
 
@@ -21,11 +20,6 @@ Table Of Contents
 <br>
 Installation
 ===
-*To install Scotch you must have GruntJS installed, if GruntJS is not already installed go to the [GruntJS website](http://gruntjs.com/) and follow the install instructions.*  
-
-*To install Scotch your must have Git installed*  
-
-
 *To install Scotch use the **Scotch Command Line Interface** *  
 
 **Installation**  
@@ -33,6 +27,8 @@ Installation
  - `git clone https://github.com/Noah-Huppert/Website-2014.git`
 - Navigate to the main Scotch directory
  - `cd Scotch`
+- Install Grunt locally
+ - `npm install`
 - Use the **Scotch Command Line Interface** to install Scotch
  - `grunt scotch --install=true`
 
@@ -57,6 +53,7 @@ Scotch Namespaces
 ===
 *Schotch uses namespaces in its code to keep organized, below are a list of these namespaces and a short description*  
 - *scotch.cli* - Scotch Command Line Tools
+- *scotch.log* - Scotch log
 
 <br>
 Scotch Command Line Interface
@@ -84,8 +81,11 @@ Scotch Command Line Interface
 Directory Structure
 ===
 *Once Scotch is properly installed the directory structure should look like this*  
-- **lib** => *Bower install dir, see [Dependencies](#Dependencies)*
+- **bower** => *Bower install dir, see [Dependencies](#dependencies)*  
+- **node_modules** => *Where Node installs dependencies*  
 - **src** => *Source code*  
+ - **server** => *Server side code*  
+- **site** => *Actual code for website*
  - **server** => *Server side code*  
    - **controllers** => *Server controllers*
    - **models** => *Server models*
