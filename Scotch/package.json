@@ -2,7 +2,7 @@
   "name": "Scotch",
   "version": "0.0.1",
   "description": "Scotch is a NodeJS website framework created by Noah Huppert for his personal site.",
-  "main": "src/server/main.js",
+  "main": "src/server/scotch.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

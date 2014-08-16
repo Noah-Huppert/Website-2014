@@ -53,7 +53,9 @@ Scotch Namespaces
 ===
 *Schotch uses namespaces in its code to keep organized, below are a list of these namespaces and a short description*  
 - *scotch.cli* - Scotch Command Line Tools
-- *scotch.log* - Scotch log
+- *scotch.config* - Scotch configuration
+- *scotch.controllers* - Scotch controller
+ - *scotch.controllers.router* - Scotch page router
 
 <br>
 Scotch Command Line Interface
