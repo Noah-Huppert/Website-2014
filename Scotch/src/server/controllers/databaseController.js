@@ -5,10 +5,9 @@ scotch.config = {};
 
 scotch.controllers.database = {};
 
-
 /* Scotch require */
-scotch.config.credentials = require(__dirname + "/../config/credentials.js");
-scotch.controllers.log = require(__dirname + "/logController.js");
+scotch.config.credentials = rekuire("config/credentials.js");
+scotch.controllers.log = rekuire("controllers/logController.js");
 
 
 /* Require */

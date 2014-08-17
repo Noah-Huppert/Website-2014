@@ -151,6 +151,7 @@ Dependencies
 - [ExpressJS](http://expressjs.com/)
 - [doT](http://olado.github.io/doT/)
 - [GruntJS](http://gruntjs.com/)
+- [Rekuire](https://github.com/nadav-dav/rekuire)
 
 <br>
 Using *Sass and friends*

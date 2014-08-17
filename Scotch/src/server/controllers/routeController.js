@@ -3,7 +3,7 @@ var scotch = {};
 scotch.controllers = {};
 scotch.controllers.router = {};
 
-scotch.controllers.view = require(__dirname + "/viewController.js");
+scotch.controllers.view = rekuire("controllers/viewController.js");
 
 
 /* Routes */

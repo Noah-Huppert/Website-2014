@@ -6,8 +6,8 @@ scotch.controllers.data = {};
 
 
 /* Require */
-scotch.controllers.database = require(__dirname + "/databaseController.js");
-scotch.controllers.log = require(__dirname + "/logController.js");
+scotch.controllers.database = rekuire("controllers/databaseController.js");
+scotch.controllers.log = rekuire("controllers/logController.js");
 
 
 /* Actions */
