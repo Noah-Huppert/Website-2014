@@ -11,6 +11,46 @@ scotch.controllers.log = rekuire("controllers/logController.js");
 
 
 /* Actions */
+scotch.controllers.data.posts = function(callback){
+  function connectedToDatabase(err, collection){
+    collection.find().toArray(fetchedPostsData);
+  }
+
+  function fetchedPostsData(err, data){
+    if(!!err){
+      scotch.controllers.log.error(err, "scotch.controllers.data.posts.fetchedPostsData");
+    }
+
+    if(data.length === 0){
+      data = {};
+    }
+
+    callback(err, data);
+  }
+
+  scotch.controllers.database.collection("posts", connectedToDatabase);
+};
+
+scotch.controllers.data.projects = function(callback){
+  function connectedToDatabase(err, collection){
+    collection.find().toArray(fetchedPostsData);
+  }
+
+  function fetchedProjectsData(err, data){
+    if(!!err){
+      scotch.controllers.log.error(err, "scotch.controllers.data.projects.fetchedProjectsData");
+    }
+
+    if(data.length === 0){
+      data = {};
+    }
+
+    callback(err, data);
+  }
+
+  scotch.controllers.database.collection("projects", connectedToDatabase);
+};
+
 scotch.controllers.data.site = function(callback){
   function connectedToDatabase(err, collection){
     collection.find().toArray(fetchedSiteData);

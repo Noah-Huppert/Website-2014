@@ -1,10 +1,42 @@
+/* Include Frameworks */
 @import "../../../../bower/bourbon/dist/_bourbon.scss";
 @import "../../../../bower/bitters/app/assets/stylesheets/_base.scss";
 @import "../../../../bower/neat/app/assets/stylesheets/_neat.scss";
 
+@import "refills/texture";
+
+/* Bitters Grid Settings */
+$mobile: new-breakpoint(max-width 700px 4);
+
+
+/* Colors */
+//$color-primary: #562A69;//Lighter: #9b59b6 Medium: #693380 Dark: #562A69(Current)
+$color-primary: #3498db;
+$color-secondary: #e74c3c;
+$color-light: #faf8f2;
+
+
+/* Constants */
+$images-dir: "../../images/";
+
+
+/* Neat */
+.outer-container{
+  @include outer-container;
+}
+
+
+/* Personal Reset */
 html, body{
+  @include texture(45deg, $color-light, $color-light, 40, 0);
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+.site-content{
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
 }

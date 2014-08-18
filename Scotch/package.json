@@ -30,7 +30,8 @@
     "colors": "~0.6.2",
     "nodemon": "~1.2.1",
     "mongodb": "~1.4.8",
-    "rekuire": "~0.1.5"
+    "rekuire": "~0.1.5",
+    "github-flavored-markdown": "~1.0.1"
   },
   "devDependencies": {
     "grunt": "~0.4.5",

@@ -1,3 +1,4 @@
+/* Include Frameworks */
 button,
 input[type="submit"] {
   -webkit-font-smoothing: antialiased;
@@ -208,8 +209,47 @@ input[type="submit"] {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+.texture {
+  height: 5em;
+  width: 100%; }
+
+.texture-normal {
+  background: url("https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/textures/diagonal-noise.png"), -webkit-linear-gradient(180deg, #e1f2f1, #bae0de), center no-repeat #e1f2f1 scroll;
+  background: url("https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/textures/diagonal-noise.png"), linear-gradient(180deg, #e1f2f1, #bae0de), center no-repeat #e1f2f1 scroll;
+  float: left;
+  height: 5em;
+  width: 50%; }
+
+.texture-inverted {
+  background: url("https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/textures/inverted/diagonal-noise.png"), -webkit-linear-gradient(180deg, #e1f2f1, #bae0de), center no-repeat #e1f2f1 scroll;
+  background: url("https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/textures/inverted/diagonal-noise.png"), linear-gradient(180deg, #e1f2f1, #bae0de), center no-repeat #e1f2f1 scroll;
+  float: left;
+  height: 5em;
+  width: 50%; }
+
+/* Bitters Grid Settings */
+/* Colors */
+/* Constants */
+/* Neat */
+.outer-container {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  .outer-container:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+/* Personal Reset */
 html, body {
+  background: url("https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/textures/inverted/brillant.png"), -webkit-linear-gradient(45deg, #faf8f2, #faf8f2), center no-repeat #faf8f2 scroll;
+  background: url("https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/textures/inverted/brillant.png"), linear-gradient(45deg, #faf8f2, #faf8f2), center no-repeat #faf8f2 scroll;
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0; }
+
+.site-content {
+  width: 100%;
+  height: 100%;
+  margin-top: 10px; }

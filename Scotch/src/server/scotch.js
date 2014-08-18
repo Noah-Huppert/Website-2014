@@ -27,7 +27,8 @@ app.engine("handlebars", handlebars({
 }));
 app.set("view engine", "hbs");
 
-app.use(express.static("./"));
+app.use("/bower", express.static("./bower"));
+app.use("/src/client", express.static("./src/client"));
 
 
 /* Require */

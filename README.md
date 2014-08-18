@@ -154,6 +154,13 @@ Dependencies
 - [Rekuire](https://github.com/nadav-dav/rekuire)
 
 <br>
+**Other Dependencies**  
+*Some dependencies can not be managed through NPM or Bower*  
+- [PrismJS](http://prismjs.com/)
+ - *src/client/scripts/prism.js*
+ - *src/client/styles/css/prism.css*
+
+<br>
 Using *Sass and friends*
 ===
 *To have `Sass` compile and watch the project run*  
