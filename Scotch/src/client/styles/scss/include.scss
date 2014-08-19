@@ -12,7 +12,7 @@ $mobile: new-breakpoint(max-width 700px 4);
 /* Colors */
 //$color-primary: #562A69;//Lighter: #9b59b6 Medium: #693380 Dark: #562A69(Current)
 $color-primary: #3498db;
-$color-secondary: #e74c3c;
+$color-secondary: #E66F63;//e74c3c
 $color-light: #faf8f2;
 
 
@@ -35,8 +35,8 @@ html, body{
   padding: 0;
 }
 
-.site-content{
+.site-page{
   width: 100%;
   height: 100%;
-  margin-top: 10px;
+  padding-top: 70px;
 }
